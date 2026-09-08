@@ -29,6 +29,6 @@ require (
 )
 
 replace (
-	github.com/containerd/containerd => github.com/containerd/containerd v1.7.22
+	github.com/containerd/containerd => github.com/containerd/containerd v1.7.35
 	github.com/docker/docker/v23/v20 => github.com/docker/docker v27.3.1+incompatible
 )
