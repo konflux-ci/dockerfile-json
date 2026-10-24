@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10/go-toolset:1.26.5-1784623266@sha256:60686966e97e4d9fa7194d1bf7f7032e0b7037930bdc70a2e4272595aeb27734 AS builder
+FROM registry.access.redhat.com/ubi10/go-toolset:10.2-1792768404@sha256:557f358c83892a8b94fb72649a99e1c303a625d240547fb97a9cbc1620e808c0 AS builder
 ARG TARGETOS
 ARG TARGETARCH
 
