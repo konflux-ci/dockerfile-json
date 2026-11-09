@@ -11,7 +11,7 @@ COPY --chown=1001:0 . .
 RUN CGO_ENABLED=0 GOOS=${TARGETOS:-linux} GOARCH=${TARGETARCH} \
     go build -mod=vendor -tags=dfrunsecurity -ldflags="-s -w" -o dockerfile-json .
 
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.8@sha256:2e8edce823a48e51858f1fad3ff4cbf6875ce8a3f86b9eecf298bc2050c8652a
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.8@sha256:f26ef64172ea61f5ac5ba4be8c5c738bf8760b22b3e5148ce7b40f7308ab32db
 COPY --from=builder /workspace/dockerfile-json /usr/local/bin/dockerfile-json
 
 # Required for ecosystem-cert-preflight-checks
