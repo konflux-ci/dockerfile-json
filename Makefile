@@ -70,3 +70,15 @@ release/$(APP)_$(VERSION)_osx_arm64.tar.gz: binaries/osx_arm64/$(APP)
 
 binaries/osx_arm64/$(APP): $(GOFILES)
 	GOOS=darwin GOARCH=arm64 CGO_ENABLED=0 go build -tags=dfrunsecurity -ldflags "-X main.version=$(VERSION)" -o binaries/osx_arm64/$(APP) .
+
+
+COURTNEY_VERSION ?= v0.5.1
+
+.PHONY: test test-coverage-courtney
+
+test:
+	go test -tags=dfrunsecurity -v ./...
+
+test-coverage-courtney:
+	go install github.com/dave/courtney@$(COURTNEY_VERSION)
+	courtney -t="-tags=dfrunsecurity" -o cover-courtney.out
