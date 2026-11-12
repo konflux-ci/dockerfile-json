@@ -9,9 +9,15 @@ on:
   pull_request:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -23,5 +29,12 @@ jobs:
       - name: Build
         run: go build -tags=dfrunsecurity -v ./...
 
-      - name: Test
-        run: go test -tags=dfrunsecurity -v ./...
+      - name: Test with coverage
+        run: make test-coverage-courtney
+
+      - name: Upload Codecov Report
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          files: cover-courtney.out
+          flags: unit-tests
+          use_oidc: true
